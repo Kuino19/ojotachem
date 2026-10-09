@@ -12,11 +12,13 @@ interface ChemicalGridProps {
 }
 
 const ITEMS_PER_PAGE = 24;
+const ALPHABET = Array.from('ABCDEFGHIJKLMNOPQRSTUVWXYZ');
 
 export const ChemicalGrid: React.FC<ChemicalGridProps> = ({ chemicals, initialSearch = '' }) => {
   const { setIsRfqModalOpen } = useCart();
   const [search, setSearch] = useState(initialSearch);
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
+  const [selectedLetter, setSelectedLetter] = useState<string>('All');
   const [currentPage, setCurrentPage] = useState(1);
 
   // Extract top 8 categories by occurrence
@@ -34,7 +36,7 @@ export const ChemicalGrid: React.FC<ChemicalGridProps> = ({ chemicals, initialSe
   // Reset page when filters change
   useEffect(() => {
     setCurrentPage(1);
-  }, [search, selectedCategory]);
+  }, [search, selectedCategory, selectedLetter]);
 
   const filteredChemicals = useMemo(() => {
     return chemicals
@@ -44,9 +46,13 @@ export const ChemicalGrid: React.FC<ChemicalGridProps> = ({ chemicals, initialSe
           c.casNumber.toLowerCase().includes(search.toLowerCase()) ||
           c.chemicalFormula.toLowerCase().includes(search.toLowerCase());
         const matchesCategory = selectedCategory === 'All' || c.category === selectedCategory;
-        return matchesSearch && matchesCategory;
-      });
-  }, [chemicals, search, selectedCategory]);
+        const matchesLetter = selectedLetter === 'All' || c.name.toUpperCase().startsWith(selectedLetter);
+        
+        return matchesSearch && matchesCategory && matchesLetter;
+      })
+      // Sort alphabetically for standard dictionary feel
+      .sort((a, b) => a.name.localeCompare(b.name));
+  }, [chemicals, search, selectedCategory, selectedLetter]);
 
   const paginatedChemicals = useMemo(() => {
     const start = (currentPage - 1) * ITEMS_PER_PAGE;
@@ -59,7 +65,7 @@ export const ChemicalGrid: React.FC<ChemicalGridProps> = ({ chemicals, initialSe
     <section id="catalog-section" className="py-24 lg:py-40 bg-white text-slate-900 scroll-mt-24 border-b border-slate-100">
       <div className="max-w-screen-2xl mx-auto px-6 lg:px-12">
         
-        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-12 mb-20">
+        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-12 mb-16">
           <div className="max-w-2xl">
             <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-4 block">
               Ojota Warehouse Inventory
@@ -83,31 +89,77 @@ export const ChemicalGrid: React.FC<ChemicalGridProps> = ({ chemicals, initialSe
           </div>
         </div>
 
-        {/* Dynamic Minimal Filters */}
-        <div className="flex flex-wrap items-center gap-4 mb-16">
-          <button
-            onClick={() => setSelectedCategory('All')}
-            className={`text-sm font-semibold px-6 py-2.5 rounded-full transition ${
-              selectedCategory === 'All'
-                ? 'bg-slate-900 text-white'
-                : 'bg-slate-50 text-slate-600 hover:bg-slate-100'
-            }`}
-          >
-            All Products
-          </button>
-          {topCategories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setSelectedCategory(cat)}
-              className={`text-sm font-semibold px-6 py-2.5 rounded-full transition ${
-                selectedCategory === cat
-                  ? 'bg-slate-900 text-white'
-                  : 'bg-slate-50 text-slate-600 hover:bg-slate-100'
-            }`}
-            >
-              {cat}
-            </button>
-          ))}
+        {/* Filters Container */}
+        <div className="flex flex-col gap-8 mb-16">
+          
+          {/* A-Z Index Scrub */}
+          <div>
+            <h3 className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-4 block">A-Z Directory</h3>
+            <div className="flex flex-wrap gap-2">
+              <button
+                onClick={() => setSelectedLetter('All')}
+                className={`w-9 h-9 flex items-center justify-center text-sm font-bold rounded-full transition ${
+                  selectedLetter === 'All'
+                    ? 'bg-slate-900 text-white'
+                    : 'bg-slate-50 text-slate-600 hover:bg-slate-200'
+                }`}
+              >
+                #
+              </button>
+              {ALPHABET.map((letter) => {
+                // Check if any chemical starts with this letter to dim it if empty
+                const hasProducts = chemicals.some(c => c.name.toUpperCase().startsWith(letter));
+                
+                return (
+                  <button
+                    key={letter}
+                    onClick={() => hasProducts && setSelectedLetter(letter)}
+                    disabled={!hasProducts}
+                    className={`w-9 h-9 flex items-center justify-center text-sm font-bold rounded-full transition ${
+                      !hasProducts 
+                        ? 'opacity-30 cursor-not-allowed'
+                        : selectedLetter === letter
+                          ? 'bg-slate-900 text-white shadow-md'
+                          : 'bg-slate-50 text-slate-600 hover:bg-slate-200'
+                    }`}
+                  >
+                    {letter}
+                  </button>
+                )
+              })}
+            </div>
+          </div>
+
+          {/* Dynamic Minimal Category Filters */}
+          <div>
+             <h3 className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-4 block">Categories</h3>
+            <div className="flex flex-wrap items-center gap-4">
+              <button
+                onClick={() => setSelectedCategory('All')}
+                className={`text-sm font-semibold px-6 py-2.5 rounded-full transition ${
+                  selectedCategory === 'All'
+                    ? 'bg-slate-900 text-white'
+                    : 'bg-slate-50 text-slate-600 hover:bg-slate-100'
+                }`}
+              >
+                All Products
+              </button>
+              {topCategories.map((cat) => (
+                <button
+                  key={cat}
+                  onClick={() => setSelectedCategory(cat)}
+                  className={`text-sm font-semibold px-6 py-2.5 rounded-full transition ${
+                    selectedCategory === cat
+                      ? 'bg-slate-900 text-white'
+                      : 'bg-slate-50 text-slate-600 hover:bg-slate-100'
+                }`}
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
+          </div>
+
         </div>
 
         {/* Chemicals Grid */}
