@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { ShoppingCart, FlaskConical, Menu, X, User } from 'lucide-react';
-import { SignInButton, Show, UserButton, OrganizationSwitcher } from '@clerk/nextjs';
+import { SignInButton, SignUpButton, Show, UserButton, OrganizationSwitcher } from '@clerk/nextjs';
 import { useCart } from '../context/CartContext';
 
 export const Navbar: React.FC = () => {
@@ -16,28 +16,34 @@ export const Navbar: React.FC = () => {
         <div className="flex-1 flex justify-start">
           <Link href="/" className="flex items-center gap-2 group">
             <FlaskConical className="w-6 h-6 text-slate-900 transition-transform group-hover:-rotate-12" />
-            <span className="text-lg font-black text-slate-900 tracking-tight">OJOTACHEM</span>
+            <span className="text-xl font-black text-slate-900 tracking-tight">OJOTACHEM</span>
           </Link>
         </div>
 
-        {/* Center: Navigation */}
-        <div className="hidden lg:flex items-center justify-center gap-8 flex-1">
-          <Link href="/catalog" className="text-sm font-semibold text-slate-500 hover:text-slate-900 transition">
+        {/* Center: Navigation (Hidden on Mobile) */}
+        <div className="hidden lg:flex items-center justify-center gap-10 flex-1">
+          <Link href="/catalog" className="text-sm font-bold text-slate-500 hover:text-slate-900 transition">
             Catalog
           </Link>
-          <Link href="/ojota-chemical-market" className="text-sm font-semibold text-slate-500 hover:text-slate-900 transition">
+          <Link href="/ojota-chemical-market" className="text-sm font-bold text-slate-500 hover:text-slate-900 transition">
             Depot Locator
           </Link>
         </div>
 
-        {/* Right: Actions */}
+        {/* Right: Actions (Hidden on Mobile) */}
         <div className="hidden lg:flex flex-1 items-center justify-end gap-6">
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-5">
             <Show when="signed-out">
               <SignInButton mode="modal">
-                <button className="text-sm font-semibold text-slate-500 hover:text-slate-900 transition">Sign in</button>
+                <button className="text-sm font-bold text-slate-500 hover:text-slate-900 transition">Sign In</button>
               </SignInButton>
+              <SignUpButton mode="modal">
+                <button className="text-sm font-bold bg-slate-900 hover:bg-slate-800 text-white px-5 py-2.5 rounded-full transition shadow-sm active:scale-95">
+                  Create Account
+                </button>
+              </SignUpButton>
             </Show>
+            
             <Show when="signed-in">
               <div className="flex items-center gap-4">
                 <OrganizationSwitcher 
@@ -59,27 +65,27 @@ export const Navbar: React.FC = () => {
             </Show>
           </div>
 
-          <div className="w-px h-5 bg-slate-200"></div>
+          <div className="w-px h-6 bg-slate-200 mx-2"></div>
 
           <button
             onClick={() => setIsCartOpen(true)}
-            className="relative text-slate-600 hover:text-slate-900 transition flex items-center group"
+            className="relative text-slate-700 hover:text-slate-900 transition flex items-center group"
           >
-            <ShoppingCart className="w-5 h-5 group-hover:scale-110 transition-transform" />
+            <ShoppingCart className="w-6 h-6 group-hover:scale-110 transition-transform" />
             {totalItems > 0 && (
-              <span className="absolute -top-2 -right-2.5 bg-slate-900 text-white w-4 h-4 rounded-full text-[10px] font-bold flex items-center justify-center shadow-sm">
+              <span className="absolute -top-2 -right-2 bg-emerald-600 text-white w-4 h-4 rounded-full text-[10px] font-bold flex items-center justify-center shadow-sm">
                 {totalItems}
               </span>
             )}
           </button>
         </div>
 
-        {/* Mobile Menu Toggle */}
+        {/* Mobile Header Icons */}
         <div className="flex lg:hidden items-center gap-5">
           <button onClick={() => setIsCartOpen(true)} className="relative text-slate-900">
             <ShoppingCart className="w-6 h-6" />
             {totalItems > 0 && (
-              <span className="absolute -top-2 -right-2 bg-slate-900 text-white w-4 h-4 rounded-full text-[10px] flex items-center justify-center font-bold">
+              <span className="absolute -top-2 -right-2 bg-emerald-600 text-white w-4 h-4 rounded-full text-[10px] flex items-center justify-center font-bold">
                 {totalItems}
               </span>
             )}
@@ -91,30 +97,35 @@ export const Navbar: React.FC = () => {
       </div>
 
       {/* Mobile Menu Dropdown */}
-      {isMobileMenuOpen && (
-        <div className="lg:hidden px-6 pb-6 bg-white space-y-6 border-b border-slate-100">
-          <div className="flex flex-col gap-6 pt-4">
-            <Link href="/catalog" className="text-lg font-semibold text-slate-900" onClick={() => setIsMobileMenuOpen(false)}>Catalog</Link>
-            <Link href="/ojota-chemical-market" className="text-lg font-semibold text-slate-900" onClick={() => setIsMobileMenuOpen(false)}>Depot Locator</Link>
+      <div className={`lg:hidden absolute top-20 left-0 w-full bg-white border-b border-slate-100 shadow-xl overflow-hidden transition-all duration-300 ease-in-out ${isMobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
+        <div className="px-6 py-6 space-y-6">
+          <div className="flex flex-col gap-5">
+            <Link href="/catalog" className="text-lg font-black text-slate-900" onClick={() => setIsMobileMenuOpen(false)}>Catalog</Link>
+            <Link href="/ojota-chemical-market" className="text-lg font-black text-slate-900" onClick={() => setIsMobileMenuOpen(false)}>Depot Locator</Link>
           </div>
           <div className="pt-6 border-t border-slate-100">
             <Show when="signed-out">
-              <SignInButton mode="modal">
-                <button className="text-lg font-semibold text-slate-900 w-full text-left">Sign in</button>
-              </SignInButton>
+              <div className="flex flex-col gap-4">
+                <SignInButton mode="modal">
+                  <button className="text-base font-bold text-slate-600 w-full text-left py-2">Sign In</button>
+                </SignInButton>
+                <SignUpButton mode="modal">
+                  <button className="text-base font-bold text-center bg-slate-900 text-white w-full py-3 rounded-xl">Create Account</button>
+                </SignUpButton>
+              </div>
             </Show>
             <Show when="signed-in">
               <div className="flex flex-col gap-4">
                 <OrganizationSwitcher hidePersonal={false} />
                 <div className="flex items-center gap-3">
                   <UserButton />
-                  <span className="text-sm font-semibold text-slate-600">Account</span>
+                  <span className="text-sm font-semibold text-slate-600">My Account</span>
                 </div>
               </div>
             </Show>
           </div>
         </div>
-      )}
+      </div>
     </header>
   );
 };
