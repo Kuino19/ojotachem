@@ -19,8 +19,8 @@ export interface Chemical {
   name: string;
   chemicalFormula: string;
   casNumber: string;
-  category: ChemicalCategory;
-  grade: ChemicalGrade;
+  category: string;
+  grade: string;
   purity: string;
   packaging: string;
   imageUrl: string;
@@ -35,7 +35,7 @@ export interface Chemical {
   storageConditions: string;
   featured?: boolean;
   density?: string;
-  physicalState: 'Solid Flakes' | 'Liquid' | 'Powder' | 'Granules' | 'Pellets' | 'Crystals';
+  physicalState: string;
   origin: string;
 }
 
