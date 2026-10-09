@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { Chemical } from '../types';
 import { ChemicalCard } from './ChemicalCard';
 import { Search } from 'lucide-react';
@@ -11,18 +11,30 @@ interface ChemicalGridProps {
   initialSearch?: string;
 }
 
-const CATEGORIES = [
-  'Industrial Chemicals',
-  'Water Treatment',
-  'Detergent & Cosmetics',
-  'Laboratory & Fine Chemicals',
-  'Food Additives',
-];
+const ITEMS_PER_PAGE = 24;
 
 export const ChemicalGrid: React.FC<ChemicalGridProps> = ({ chemicals, initialSearch = '' }) => {
   const { setIsRfqModalOpen } = useCart();
   const [search, setSearch] = useState(initialSearch);
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
+  const [currentPage, setCurrentPage] = useState(1);
+
+  // Extract top 8 categories by occurrence
+  const topCategories = useMemo(() => {
+    const counts: Record<string, number> = {};
+    chemicals.forEach(c => {
+      counts[c.category] = (counts[c.category] || 0) + 1;
+    });
+    return Object.entries(counts)
+      .sort((a, b) => b[1] - a[1])
+      .map(entry => entry[0])
+      .slice(0, 8);
+  }, [chemicals]);
+
+  // Reset page when filters change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [search, selectedCategory]);
 
   const filteredChemicals = useMemo(() => {
     return chemicals
@@ -35,6 +47,13 @@ export const ChemicalGrid: React.FC<ChemicalGridProps> = ({ chemicals, initialSe
         return matchesSearch && matchesCategory;
       });
   }, [chemicals, search, selectedCategory]);
+
+  const paginatedChemicals = useMemo(() => {
+    const start = (currentPage - 1) * ITEMS_PER_PAGE;
+    return filteredChemicals.slice(start, start + ITEMS_PER_PAGE);
+  }, [filteredChemicals, currentPage]);
+
+  const totalPages = Math.ceil(filteredChemicals.length / ITEMS_PER_PAGE);
 
   return (
     <section id="catalog-section" className="py-24 lg:py-40 bg-white text-slate-900 scroll-mt-24 border-b border-slate-100">
@@ -64,7 +83,7 @@ export const ChemicalGrid: React.FC<ChemicalGridProps> = ({ chemicals, initialSe
           </div>
         </div>
 
-        {/* Minimal Filters */}
+        {/* Dynamic Minimal Filters */}
         <div className="flex flex-wrap items-center gap-4 mb-16">
           <button
             onClick={() => setSelectedCategory('All')}
@@ -76,7 +95,7 @@ export const ChemicalGrid: React.FC<ChemicalGridProps> = ({ chemicals, initialSe
           >
             All Products
           </button>
-          {CATEGORIES.map((cat) => (
+          {topCategories.map((cat) => (
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
@@ -92,12 +111,45 @@ export const ChemicalGrid: React.FC<ChemicalGridProps> = ({ chemicals, initialSe
         </div>
 
         {/* Chemicals Grid */}
-        {filteredChemicals.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-14">
-            {filteredChemicals.map((chemical) => (
-              <ChemicalCard key={chemical.id} chemical={chemical} />
-            ))}
-          </div>
+        {paginatedChemicals.length > 0 ? (
+          <>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-14">
+              {paginatedChemicals.map((chemical) => (
+                <ChemicalCard key={chemical.id} chemical={chemical} />
+              ))}
+            </div>
+            
+            {/* Pagination Controls */}
+            {totalPages > 1 && (
+              <div className="flex justify-center items-center gap-4 mt-20">
+                <button 
+                  onClick={() => {
+                    setCurrentPage(p => Math.max(1, p - 1));
+                    document.getElementById('catalog-section')?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  disabled={currentPage === 1}
+                  className="px-6 py-3 rounded-full bg-slate-50 text-slate-900 font-semibold disabled:opacity-40 hover:bg-slate-100 transition"
+                >
+                  Previous
+                </button>
+                
+                <span className="text-slate-500 font-medium px-4">
+                  Page {currentPage} of {totalPages}
+                </span>
+                
+                <button 
+                  onClick={() => {
+                    setCurrentPage(p => Math.min(totalPages, p + 1));
+                    document.getElementById('catalog-section')?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  disabled={currentPage === totalPages}
+                  className="px-6 py-3 rounded-full bg-slate-50 text-slate-900 font-semibold disabled:opacity-40 hover:bg-slate-100 transition"
+                >
+                  Next
+                </button>
+              </div>
+            )}
+          </>
         ) : (
           <div className="py-24 text-center max-w-lg mx-auto">
             <h3 className="text-3xl font-black text-slate-900 mb-4">No Matches Found</h3>
