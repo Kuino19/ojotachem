@@ -17,11 +17,11 @@ export type ChemicalGrade =
 export interface Chemical {
   id: string;
   name: string;
-  chemicalFormula: string;
-  casNumber: string;
+  chemicalFormula?: string;
+  casNumber?: string;
   category: string;
   grade: string;
-  purity: string;
+  purity?: string;
   packaging: string;
   imageUrl: string;
   packageWeightKg?: number;
@@ -30,13 +30,13 @@ export interface Chemical {
   stockQuantity: number;
   minOrderQuantity: number;
   description: string;
-  applications: string[];
-  hazardWarnings: string[];
-  storageConditions: string;
+  applications?: string[];
+  hazardWarnings?: string[];
+  storageConditions?: string;
   featured?: boolean;
   density?: string;
   physicalState: string;
-  origin: string;
+  origin?: string;
 }
 
 export interface CartItem {
