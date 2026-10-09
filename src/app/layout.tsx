@@ -1,4 +1,5 @@
 import { ClerkProvider } from '@clerk/nextjs';
+import { WhatsAppWidget } from '../components/WhatsAppWidget';
 import type { Metadata } from 'next';
 import './globals.css';
 import { CartProvider } from '../context/CartContext';
