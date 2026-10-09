@@ -78,7 +78,10 @@ export default function RootLayout({
       </head>
       <body className="min-h-full flex flex-col bg-slate-50 text-slate-900 selection:bg-emerald-500 selection:text-white font-sans">
         <ClerkProvider>
-          <CartProvider>{children}</CartProvider>
+          <CartProvider>
+            {children}
+            <WhatsAppWidget />
+          </CartProvider>
         </ClerkProvider>
       </body>
     </html>
