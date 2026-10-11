@@ -7,7 +7,7 @@ export const SITE_CONFIG = {
   url: 'https://ojotachem.com.ng',
   ogImage: '/images/ojota-chemicals-depot-lagos.jpg',
   telephone: '+234 916 943 7276',
-  telephoneAlt: '+234 818 736 2901',
+  telephoneAlt: '+234 901 071 5400',
   email: 'Alfredarmstrong96@gmail.com',
   salesEmail: 'Alfredarmstrong96@gmail.com',
   address: {

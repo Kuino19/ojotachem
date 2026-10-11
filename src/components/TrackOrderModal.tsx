@@ -192,15 +192,25 @@ export const TrackOrderModal: React.FC = () => {
               </div>
 
               {/* Contact Dispatch Button */}
-              <div className="pt-2 border-t border-slate-200 flex items-center justify-between text-xs">
+              <div className="pt-2 border-t border-slate-200 flex flex-wrap items-center justify-between gap-2 text-xs">
                 <span className="text-slate-500 font-medium">Need immediate help?</span>
-                <a
-                  href="tel:+2349169437276"
-                  className="text-emerald-700 font-bold hover:underline flex items-center gap-1"
-                >
-                  <PhoneCall className="w-3.5 h-3.5" />
-                  Call Ojota Dispatch: +234 916 943 7276
-                </a>
+                <div className="flex items-center gap-3">
+                  <a
+                    href="tel:+2349169437276"
+                    className="text-emerald-700 font-bold hover:underline flex items-center gap-1"
+                  >
+                    <PhoneCall className="w-3.5 h-3.5" />
+                    +234 916 943 7276
+                  </a>
+                  <span className="text-slate-300">|</span>
+                  <a
+                    href="tel:+2349010715400"
+                    className="text-emerald-700 font-bold hover:underline flex items-center gap-1"
+                  >
+                    <PhoneCall className="w-3.5 h-3.5" />
+                    +234 901 071 5400
+                  </a>
+                </div>
               </div>
             </div>
           ) : (
@@ -210,7 +220,7 @@ export const TrackOrderModal: React.FC = () => {
                   No active chemical order found for &quot;{searchQuery}&quot;
                 </p>
                 <p className="text-xs text-slate-500">
-                  Please verify your order reference number or call our Ojota depot directly at +234 916 943 7276.
+                  Please verify your order reference number or call our Ojota depot directly at +234 916 943 7276 or +234 901 071 5400.
                 </p>
               </div>
             )

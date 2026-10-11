@@ -58,10 +58,17 @@ export default function OjotaChemicalMarketPage() {
               </Link>
               <a
                 href="tel:+2349169437276"
-                className="inline-flex items-center gap-2 bg-white hover:bg-slate-100 text-slate-800 font-bold px-5 py-3.5 rounded-xl text-sm border border-slate-300 transition shadow-2xs"
+                className="inline-flex items-center gap-2 bg-white hover:bg-slate-100 text-slate-800 font-bold px-4 py-3.5 rounded-xl text-sm border border-slate-300 transition shadow-2xs"
               >
                 <Phone className="w-4 h-4 text-emerald-600" />
-                <span>Call Depot Desk: +234 916 943 7276</span>
+                <span>Call: 0916 943 7276</span>
+              </a>
+              <a
+                href="tel:+2349010715400"
+                className="inline-flex items-center gap-2 bg-white hover:bg-slate-100 text-slate-800 font-bold px-4 py-3.5 rounded-xl text-sm border border-slate-300 transition shadow-2xs"
+              >
+                <Phone className="w-4 h-4 text-emerald-600" />
+                <span>Line 2: 0901 071 5400</span>
               </a>
             </div>
           </div>

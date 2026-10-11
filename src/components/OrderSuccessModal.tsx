@@ -82,7 +82,7 @@ export const OrderSuccessModal: React.FC = () => {
                 Block 4, Ojota Chemical Market Complex, Off Ikorodu Road, Lagos
               </p>
               <p className="text-[11px] text-slate-500">
-                Phone: +234 916 943 7276 | Alfredarmstrong96@gmail.com
+                Phone: +234 916 943 7276 / +234 901 071 5400 | Alfredarmstrong96@gmail.com
               </p>
             </div>
 
@@ -237,7 +237,7 @@ export const OrderSuccessModal: React.FC = () => {
               Drive into Ojota Chemical Market complex off Ikorodu Road (behind the Ojota Bus Terminal). Approach Gate 2 Loading Bay with your Gate-Pass Code <strong className="text-slate-950">{lastOrder.pickupPassCode}</strong>.
             </p>
             <p className="text-[11px] text-slate-600">
-              Depot Warehouse Manager: <strong className="text-emerald-800">+234 916 943 7276</strong>
+              Depot Warehouse Manager: <strong className="text-emerald-800">+234 916 943 7276</strong> / <strong className="text-emerald-800">+234 901 071 5400</strong>
             </p>
           </div>
 
