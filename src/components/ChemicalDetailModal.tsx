@@ -10,7 +10,8 @@ import {
   Plus, 
   Minus, 
   ShoppingCart,
-  CreditCard
+  CreditCard,
+  MessageCircle
 } from 'lucide-react';
 
 export const ChemicalDetailModal: React.FC = () => {
@@ -193,7 +194,7 @@ export const ChemicalDetailModal: React.FC = () => {
           </div>
 
           {/* Action buttons */}
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2">
             <button
               onClick={() => {
                 addToCart(selectedChemical, qty);
@@ -204,6 +205,18 @@ export const ChemicalDetailModal: React.FC = () => {
               <ShoppingCart className="w-4 h-4 text-emerald-600" />
               <span>Add to Cart</span>
             </button>
+
+            <a
+              href={`https://wa.me/2349169437276?text=${encodeURIComponent(
+                `Hello OjotaChem, I would like to order this chemical:\n\n*Product:* ${selectedChemical.name}\n*Quantity:* ${qty} (${selectedChemical.packaging})\n*Grade:* ${selectedChemical.grade}\n*Total Estimated Price:* ${formatPrice(selectedChemical.priceNgn * qty)}\n\nPlease send invoice and dispatch info.`
+              )}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-emerald-50 hover:bg-emerald-100 text-emerald-800 text-xs font-bold py-3 px-4 rounded-xl border border-emerald-300 transition flex items-center gap-1.5 shadow-2xs"
+            >
+              <MessageCircle className="w-4 h-4 text-emerald-600" />
+              <span>Order on WhatsApp</span>
+            </a>
 
             <button
               onClick={handleAddAndCheckout}

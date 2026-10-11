@@ -3,7 +3,7 @@
 import React from 'react';
 import { Chemical } from '../types';
 import { useCart } from '../context/CartContext';
-import { Plus, Check, MapPin } from 'lucide-react';
+import { Plus, Check, MapPin, MessageCircle } from 'lucide-react';
 import Image from 'next/image';
 
 interface ChemicalCardProps {
@@ -90,17 +90,17 @@ export const ChemicalCard: React.FC<ChemicalCardProps> = ({ chemical }) => {
           </div>
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 mb-3">
           <button
             onClick={() => setSelectedChemical(chemical)}
-            className="flex-1 bg-slate-50 hover:bg-slate-100 text-slate-900 text-sm font-semibold py-4 rounded-full transition flex items-center justify-center gap-2"
+            className="flex-1 bg-slate-50 hover:bg-slate-100 text-slate-900 text-sm font-semibold py-3.5 rounded-full transition flex items-center justify-center gap-2"
           >
             Details
           </button>
 
           <button
             onClick={() => addToCart(chemical, 1)}
-            className={`flex-1 text-sm font-semibold py-4 rounded-full transition flex items-center justify-center gap-2 ${
+            className={`flex-1 text-sm font-semibold py-3.5 rounded-full transition flex items-center justify-center gap-2 ${
               isInCart
                 ? 'bg-emerald-600 text-white'
                 : 'bg-slate-900 hover:bg-slate-800 text-white shadow-xl shadow-slate-900/10 active:scale-95'
@@ -119,6 +119,18 @@ export const ChemicalCard: React.FC<ChemicalCardProps> = ({ chemical }) => {
             )}
           </button>
         </div>
+
+        <a
+          href={`https://wa.me/2349169437276?text=${encodeURIComponent(
+            `Hello OjotaChem, I would like to order this chemical:\n\n*Product:* ${chemical.name}\n*Packaging:* ${chemical.packaging}\n*Grade:* ${chemical.grade}\n*Wholesale Price:* ${formatPrice(chemical.priceNgn)}\n\nPlease confirm availability and payment/delivery details.`
+          )}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="w-full bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200/80 hover:border-emerald-300 text-xs font-bold py-3 rounded-full transition-all flex items-center justify-center gap-2 shadow-2xs group/wa active:scale-98"
+        >
+          <MessageCircle className="w-4 h-4 text-emerald-600 group-hover/wa:scale-110 transition-transform" />
+          <span>Order via WhatsApp</span>
+        </a>
       </div>
     </div>
   );
