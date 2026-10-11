@@ -8,8 +8,8 @@ export const SITE_CONFIG = {
   ogImage: '/images/ojota-chemicals-depot-lagos.jpg',
   telephone: '+234 803 294 8831',
   telephoneAlt: '+234 818 736 2901',
-  email: 'orders@ojotachem.com.ng',
-  salesEmail: 'sales@ojotachem.com.ng',
+  email: 'Alfredarmstrong96@gmail.com',
+  salesEmail: 'Alfredarmstrong96@gmail.com',
   address: {
     streetAddress: 'Block 4, Suite 12-18, Ojota Chemical Market Complex, Off Ikorodu Road',
     addressLocality: 'Ojota, Kosofe LGA',

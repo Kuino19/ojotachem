@@ -17,7 +17,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Paystack Secret not found' }, { status: 500 });
     }
 
-    // Initialize Paystack FIRST so we can use its reference as Order ID
+    const origin = req.headers.get('origin') || 'https://ojotachem.vercel.app';
     const paystackRes = await fetch('https://api.paystack.co/transaction/initialize', {
       method: 'POST',
       headers: {
@@ -25,9 +25,9 @@ export async function POST(req: Request) {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        email: userEmail || 'customer@ojotachem.com',
+        email: userEmail || 'Alfredarmstrong96@gmail.com',
         amount: Math.round(totalAmount * 100), // kobo
-        callback_url: 'http://localhost:3000/order-success'
+        callback_url: `${origin}/order-success`
       })
     });
 

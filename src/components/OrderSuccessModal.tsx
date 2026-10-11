@@ -82,7 +82,7 @@ export const OrderSuccessModal: React.FC = () => {
                 Block 4, Ojota Chemical Market Complex, Off Ikorodu Road, Lagos
               </p>
               <p className="text-[11px] text-slate-500">
-                Phone: +234 803 294 8831 | orders@ojotachem.com.ng
+                Phone: +234 803 294 8831 | Alfredarmstrong96@gmail.com
               </p>
             </div>
 

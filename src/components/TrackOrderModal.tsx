@@ -53,7 +53,7 @@ export const TrackOrderModal: React.FC = () => {
           orderId: query,
           customerName: 'Verified Chemical Purchaser',
           customerPhone: '0803 294 8831',
-          customerEmail: 'orders@ojotachem.com.ng',
+          customerEmail: 'Alfredarmstrong96@gmail.com',
           items: [],
           subtotal: 75000,
           deliveryFee: 0,

@@ -43,7 +43,7 @@ export const Footer: React.FC = () => {
               <li><button onClick={() => setIsTrackModalOpen(true)} className="hover:text-slate-900 transition">Track Order</button></li>
               <li><button onClick={() => setIsRfqModalOpen(true)} className="hover:text-slate-900 transition">Bulk Wholesale RFQ</button></li>
               <li><Link href="/ojota-chemical-market" className="hover:text-slate-900 transition">Depot Guide</Link></li>
-              <li><a href="mailto:orders@ojotachem.com.ng" className="hover:text-slate-900 transition">Contact Us</a></li>
+              <li><a href="mailto:Alfredarmstrong96@gmail.com" className="hover:text-slate-900 transition">Contact Us (Alfredarmstrong96@gmail.com)</a></li>
             </ul>
           </div>
 
