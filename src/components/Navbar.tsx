@@ -15,9 +15,12 @@ export const Navbar: React.FC = () => {
         
         {/* Left: Logo */}
         <div className="flex-1 flex justify-start">
-          <Link href="/" className="flex items-center gap-2 group">
-            <FlaskConical className="w-6 h-6 text-slate-900 transition-transform group-hover:-rotate-12" />
-            <span className="text-xl font-black text-slate-900 tracking-tight">OJOTACHEM</span>
+          <Link href="/" className="flex items-center gap-3 group">
+            <img 
+              src="/images/logo-horizontal.png" 
+              alt="HOPEARMS Food Grade Chemicals" 
+              className="h-10 sm:h-12 w-auto object-contain transition-transform group-hover:scale-105" 
+            />
           </Link>
         </div>
 

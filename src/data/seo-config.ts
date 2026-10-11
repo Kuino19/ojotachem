@@ -1,7 +1,7 @@
 export const SITE_CONFIG = {
-  name: 'OjotaChem | Premier Lagos Chemical Depot & Wholesale Suppliers',
-  shortName: 'OjotaChem Lagos',
-  legalName: 'OjotaChem Industrial & Specialty Chemicals Nigeria Ltd.',
+  name: 'HopeArms | Food Grade & Industrial Chemicals Lagos',
+  shortName: 'HopeArms Chemicals',
+  legalName: 'HopeArms Food Grade Chemicals Nigeria Ltd.',
   description:
     'Lagos & Ojota’s #1 certified chemical supplier. Buy pure industrial chemicals, water treatment reagents, soap & detergent raw materials, cosmetics ingredients, food grade additives, and laboratory AR chemicals. Pay online or onsite at our Ojota Chemical Market depot. Same-day Lagos delivery & nationwide freight.',
   url: 'https://ojotachem.com.ng',

@@ -8,15 +8,15 @@ import { SITE_CONFIG, LOCAL_BUSINESS_JSON_LD, FAQ_SCHEMA } from '../data/seo-con
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_CONFIG.url),
   title: {
-    default: 'Buy Chemicals in Lagos & Ojota Market | OjotaChem Direct Wholesale Depot',
-    template: '%s | OjotaChem Chemical Depot Lagos',
+    default: 'HopeArms Food Grade Chemicals | Lagos & Ojota Wholesale Chemical Depot',
+    template: '%s | HopeArms Food Grade Chemicals',
   },
   description:
-    'Lagos & Ojota’s #1 certified supplier of industrial chemicals, water treatment reagents, soap raw materials, cosmetics ingredients, and laboratory AR grade chemicals. Pay online or pay onsite at our Ojota Chemical Market depot. Same-day Lagos delivery.',
+    'Lagos & Ojota’s #1 certified supplier of food grade chemicals, industrial raw materials, water treatment reagents, and laboratory grade chemicals. Pay online or onsite at our Ojota Depot. Same-day dispatch.',
   keywords: SITE_CONFIG.keywords,
-  authors: [{ name: 'OjotaChem Industrial & Specialty Chemicals Ltd' }],
-  creator: 'OjotaChem Lagos',
-  publisher: 'OjotaChem Chemical Depot',
+  authors: [{ name: 'HopeArms Food Grade Chemicals Nigeria Ltd' }],
+  creator: 'HopeArms Chemicals',
+  publisher: 'HopeArms Chemicals',
   formatDetection: {
     email: false,
     address: true,

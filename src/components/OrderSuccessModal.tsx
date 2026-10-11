@@ -70,13 +70,15 @@ export const OrderSuccessModal: React.FC = () => {
           {/* Header & Logo */}
           <div className="flex justify-between items-start border-b border-slate-200 pb-4">
             <div>
-              <div className="flex items-center gap-2">
-                <span className="text-xl font-black text-slate-950">
-                  OJOTA<span className="text-emerald-700">CHEM</span> NIGERIA
-                </span>
+              <div className="flex items-center gap-2 mb-1">
+                <img 
+                  src="/images/logo-horizontal.png" 
+                  alt="HOPEARMS Food Grade Chemicals" 
+                  className="h-9 w-auto object-contain" 
+                />
               </div>
               <p className="text-[11px] text-slate-500 mt-0.5 font-medium">
-                Wholesale Industrial & Specialty Chemicals Depot
+                Wholesale Food Grade, Industrial & Specialty Chemicals Depot
               </p>
               <p className="text-[11px] text-slate-500">
                 Block 4, Ojota Chemical Market Complex, Off Ikorodu Road, Lagos

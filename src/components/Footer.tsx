@@ -13,14 +13,12 @@ export const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-16 lg:gap-24 mb-24">
           
           <div className="md:col-span-5">
-            <Link href="/" className="flex items-center gap-3 shrink-0 mb-8 inline-flex">
-              <div className="w-10 h-10 bg-slate-900 rounded-lg flex items-center justify-center">
-                <FlaskConical className="w-5 h-5 text-white" />
-              </div>
-              <div>
-                <span className="text-xl font-black text-slate-900 tracking-tight block leading-none">OJOTACHEM</span>
-                <span className="text-[10px] font-bold text-slate-400 tracking-widest uppercase mt-1 block">Nigeria</span>
-              </div>
+            <Link href="/" className="flex items-center gap-3 shrink-0 mb-6 inline-flex">
+              <img 
+                src="/images/logo-horizontal.png" 
+                alt="HOPEARMS Food Grade Chemicals" 
+                className="h-12 w-auto object-contain" 
+              />
             </Link>
             <p className="text-slate-500 text-lg leading-relaxed max-w-sm">
               The premier certified distributor of pure industrial chemicals, water purification reagents, and laboratory AR reagents in West Africa.
@@ -57,7 +55,7 @@ export const Footer: React.FC = () => {
         </div>
 
         <div className="flex flex-col md:flex-row items-center justify-between pt-8 border-t border-slate-100 text-sm text-slate-400">
-          <p>&copy; 2026 OjotaChem Nigeria Ltd. All Rights Reserved.</p>
+          <p>&copy; 2026 HopeArms Food Grade Chemicals Nigeria Ltd. All Rights Reserved.</p>
           <div className="flex items-center gap-6 mt-4 md:mt-0">
             <span>Pay Online</span>
             <span>Pay Onsite</span>
