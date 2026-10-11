@@ -19,7 +19,7 @@ export const Navbar: React.FC = () => {
             <img 
               src="/images/logo-horizontal.png" 
               alt="HOPEARMS Food Grade Chemicals" 
-              className="h-10 sm:h-12 w-auto object-contain transition-transform group-hover:scale-105" 
+              className="h-12 sm:h-14 md:h-16 w-auto object-contain transition-transform group-hover:scale-105" 
             />
           </Link>
         </div>
