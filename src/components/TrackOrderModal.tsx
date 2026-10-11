@@ -52,7 +52,7 @@ export const TrackOrderModal: React.FC = () => {
         setSearchedOrder({
           orderId: query,
           customerName: 'Verified Chemical Purchaser',
-          customerPhone: '0803 294 8831',
+          customerPhone: '0916 943 7276',
           customerEmail: 'Alfredarmstrong96@gmail.com',
           items: [],
           subtotal: 75000,
@@ -101,7 +101,7 @@ export const TrackOrderModal: React.FC = () => {
               <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-3.5" />
               <input
                 type="text"
-                placeholder="e.g. OJT-CHEM-84920 or 08032948831..."
+                placeholder="e.g. OJT-CHEM-84920 or 09169437276..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full bg-white text-slate-900 text-sm rounded-xl pl-10 pr-24 py-3 border border-slate-300 focus:outline-none focus:border-emerald-600 shadow-2xs"
@@ -195,11 +195,11 @@ export const TrackOrderModal: React.FC = () => {
               <div className="pt-2 border-t border-slate-200 flex items-center justify-between text-xs">
                 <span className="text-slate-500 font-medium">Need immediate help?</span>
                 <a
-                  href="tel:+2348032948831"
+                  href="tel:+2349169437276"
                   className="text-emerald-700 font-bold hover:underline flex items-center gap-1"
                 >
                   <PhoneCall className="w-3.5 h-3.5" />
-                  Call Ojota Dispatch: +234 803 294 8831
+                  Call Ojota Dispatch: +234 916 943 7276
                 </a>
               </div>
             </div>
@@ -210,7 +210,7 @@ export const TrackOrderModal: React.FC = () => {
                   No active chemical order found for &quot;{searchQuery}&quot;
                 </p>
                 <p className="text-xs text-slate-500">
-                  Please verify your order reference number or call our Ojota depot directly at +234 803 294 8831.
+                  Please verify your order reference number or call our Ojota depot directly at +234 916 943 7276.
                 </p>
               </div>
             )

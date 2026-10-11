@@ -6,7 +6,7 @@ export const SITE_CONFIG = {
     'Lagos & Ojota’s #1 certified chemical supplier. Buy pure industrial chemicals, water treatment reagents, soap & detergent raw materials, cosmetics ingredients, food grade additives, and laboratory AR chemicals. Pay online or onsite at our Ojota Chemical Market depot. Same-day Lagos delivery & nationwide freight.',
   url: 'https://ojotachem.com.ng',
   ogImage: '/images/ojota-chemicals-depot-lagos.jpg',
-  telephone: '+234 803 294 8831',
+  telephone: '+234 916 943 7276',
   telephoneAlt: '+234 818 736 2901',
   email: 'Alfredarmstrong96@gmail.com',
   salesEmail: 'Alfredarmstrong96@gmail.com',

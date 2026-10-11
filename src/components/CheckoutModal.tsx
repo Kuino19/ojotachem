@@ -344,7 +344,7 @@ export const CheckoutModal: React.FC = () => {
                   <input
                     type="tel"
                     required
-                    placeholder="e.g. 0803 294 8831"
+                    placeholder="e.g. 0916 943 7276"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     className="w-full bg-white text-slate-900 text-sm rounded-xl pl-10 pr-3 py-2.5 border border-slate-300 focus:outline-none focus:border-emerald-600 shadow-2xs"

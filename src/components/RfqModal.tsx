@@ -79,7 +79,7 @@ export const RfqModal: React.FC = () => {
 
               <div className="pt-3 flex flex-col sm:flex-row gap-3 justify-center">
                 <a
-                  href={`https://wa.me/2348032948831?text=${whatsappMessage}`}
+                  href={`https://wa.me/2349169437276?text=${whatsappMessage}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold py-3 px-5 rounded-xl transition flex items-center justify-center gap-2 shadow-md shadow-emerald-600/20"
@@ -136,7 +136,7 @@ export const RfqModal: React.FC = () => {
                   <input
                     type="tel"
                     required
-                    placeholder="e.g. 0803 294 8831"
+                    placeholder="e.g. 0916 943 7276"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     className="w-full bg-white text-slate-900 rounded-xl px-3.5 py-2.5 border border-slate-300 focus:outline-none focus:border-emerald-600 shadow-2xs"
