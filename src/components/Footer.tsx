@@ -65,7 +65,7 @@ export const Footer: React.FC = () => {
               rel="noopener noreferrer" 
               className="text-emerald-400 hover:text-emerald-300 font-bold hover:underline transition"
             >
-              goanitech (www.goanitech.com)
+              goanitech
             </a>
           </div>
 
