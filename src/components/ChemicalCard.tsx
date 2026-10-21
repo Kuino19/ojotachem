@@ -3,7 +3,7 @@
 import React from 'react';
 import { Chemical } from '../types';
 import { useCart } from '../context/CartContext';
-import { Plus, Check, MapPin, MessageCircle } from 'lucide-react';
+import { Plus, Check, MapPin, MessageCircle, Maximize2 } from 'lucide-react';
 import Image from 'next/image';
 
 interface ChemicalCardProps {
@@ -11,9 +11,21 @@ interface ChemicalCardProps {
 }
 
 export const ChemicalCard: React.FC<ChemicalCardProps> = ({ chemical }) => {
-  const { addToCart, setSelectedChemical, items } = useCart();
+  const { addToCart, setSelectedChemical, setPreviewImage, items } = useCart();
   const cartItem = items.find((item) => item.chemical.id === chemical.id);
   const isInCart = Boolean(cartItem);
+
+  const handleImageExpand = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setPreviewImage({
+      imageUrl: chemical.imageUrl,
+      title: chemical.name,
+      packaging: chemical.packaging,
+      price: chemical.priceNgn,
+      grade: chemical.grade,
+      chemical,
+    });
+  };
 
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat('en-NG', {
@@ -26,8 +38,12 @@ export const ChemicalCard: React.FC<ChemicalCardProps> = ({ chemical }) => {
   return (
     <div className="group bg-white rounded-[2rem] border border-slate-100 hover:border-slate-300 transition-all duration-500 hover:shadow-2xl flex flex-col justify-between h-full relative overflow-hidden">
       
-      {/* Premium Image Header */}
-      <div className="relative w-full h-56 lg:h-64 bg-slate-100 overflow-hidden">
+      {/* Premium Image Header - Tap to Expand */}
+      <div 
+        onClick={handleImageExpand}
+        className="relative w-full h-56 lg:h-64 bg-slate-100 overflow-hidden cursor-pointer select-none"
+        title="Tap to expand picture"
+      >
         {chemical.imageUrl ? (
           <img 
             src={chemical.imageUrl} 
@@ -36,7 +52,7 @@ export const ChemicalCard: React.FC<ChemicalCardProps> = ({ chemical }) => {
           />
         ) : (
           <div className="w-full h-full bg-slate-100 flex items-center justify-center">
-            <span className="text-slate-300 font-bold">OJOTACHEM</span>
+            <span className="text-slate-300 font-bold">HOPEARMS</span>
           </div>
         )}
         
@@ -45,6 +61,12 @@ export const ChemicalCard: React.FC<ChemicalCardProps> = ({ chemical }) => {
           <span className="bg-white/95 backdrop-blur-md text-slate-900 text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-widest shadow-sm">
             {chemical.grade}
           </span>
+        </div>
+
+        {/* Tap to expand hover pill */}
+        <div className="absolute bottom-3 right-3 bg-slate-900/80 hover:bg-slate-900 text-white backdrop-blur-md px-3 py-1.5 rounded-full text-[11px] font-bold flex items-center gap-1.5 shadow-md opacity-90 sm:opacity-0 group-hover:opacity-100 transition-opacity">
+          <Maximize2 className="w-3.5 h-3.5 text-emerald-400" />
+          <span>Tap to expand</span>
         </div>
       </div>
 

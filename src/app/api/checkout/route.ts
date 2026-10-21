@@ -4,9 +4,12 @@ import { prisma } from '../../../lib/prisma';
 
 export async function POST(req: Request) {
   try {
-    const { userId } = await auth();
-    if (!userId) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    let userId: string | null = null;
+    try {
+      const authResult = await auth();
+      userId = authResult?.userId || null;
+    } catch {
+      // allow guest checkout
     }
 
     const body = await req.json();

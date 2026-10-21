@@ -3,6 +3,15 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { Chemical, CartItem, DeliveryType, Order } from '../types';
 
+export interface PreviewImage {
+  imageUrl: string;
+  title: string;
+  packaging?: string;
+  price?: number;
+  grade?: string;
+  chemical?: Chemical;
+}
+
 interface CartContextType {
   items: CartItem[];
   addToCart: (chemical: Chemical, quantity?: number) => void;
@@ -21,6 +30,8 @@ interface CartContextType {
   setIsCheckoutOpen: (open: boolean) => void;
   selectedChemical: Chemical | null;
   setSelectedChemical: (chemical: Chemical | null) => void;
+  previewImage: PreviewImage | null;
+  setPreviewImage: (preview: PreviewImage | null) => void;
   lastOrder: Order | null;
   setLastOrder: (order: Order | null) => void;
   isOrderSuccessOpen: boolean;
@@ -41,6 +52,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
   const [selectedChemical, setSelectedChemical] = useState<Chemical | null>(null);
+  const [previewImage, setPreviewImage] = useState<PreviewImage | null>(null);
   const [lastOrder, setLastOrder] = useState<Order | null>(null);
   const [isOrderSuccessOpen, setIsOrderSuccessOpen] = useState(false);
   const [isTrackModalOpen, setIsTrackModalOpen] = useState(false);
@@ -149,6 +161,8 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         setIsCheckoutOpen,
         selectedChemical,
         setSelectedChemical,
+        previewImage,
+        setPreviewImage,
         lastOrder,
         setLastOrder,
         isOrderSuccessOpen,

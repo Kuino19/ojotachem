@@ -11,11 +11,12 @@ import {
   Minus, 
   ShoppingCart,
   CreditCard,
-  MessageCircle
+  MessageCircle,
+  Maximize2
 } from 'lucide-react';
 
 export const ChemicalDetailModal: React.FC = () => {
-  const { selectedChemical, setSelectedChemical, addToCart, setIsCheckoutOpen } = useCart();
+  const { selectedChemical, setSelectedChemical, addToCart, setIsCheckoutOpen, setPreviewImage } = useCart();
   const [qty, setQty] = useState(1);
 
   if (!selectedChemical) return null;
@@ -74,6 +75,32 @@ export const ChemicalDetailModal: React.FC = () => {
         {/* Modal Body */}
         <div className="p-6 space-y-6 max-h-[70vh] overflow-y-auto">
           
+          {/* Product Image & Quick Preview Banner */}
+          {selectedChemical.imageUrl && (
+            <div 
+              onClick={() => setPreviewImage({
+                imageUrl: selectedChemical.imageUrl,
+                title: selectedChemical.name,
+                packaging: selectedChemical.packaging,
+                price: selectedChemical.priceNgn,
+                grade: selectedChemical.grade,
+                chemical: selectedChemical
+              })}
+              className="relative w-full h-56 sm:h-64 rounded-2xl overflow-hidden bg-slate-100 cursor-pointer group border border-slate-200"
+              title="Tap to expand picture"
+            >
+              <img 
+                src={selectedChemical.imageUrl} 
+                alt={selectedChemical.name}
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+              />
+              <div className="absolute bottom-3 right-3 bg-slate-900/85 hover:bg-slate-900 text-white backdrop-blur-md px-3.5 py-1.5 rounded-full text-xs font-bold flex items-center gap-1.5 shadow-md">
+                <Maximize2 className="w-3.5 h-3.5 text-emerald-400" />
+                <span>Tap to expand picture</span>
+              </div>
+            </div>
+          )}
+
           {/* Price & Depot Stock Banner */}
           <div className="bg-slate-50 rounded-2xl p-4 border border-slate-200 flex flex-wrap items-center justify-between gap-4">
             <div>
@@ -171,18 +198,29 @@ export const ChemicalDetailModal: React.FC = () => {
             <span className="text-xs text-slate-600 font-bold">Quantity:</span>
             <div className="flex items-center bg-white border border-slate-300 rounded-xl overflow-hidden shadow-2xs">
               <button
+                type="button"
                 onClick={() => setQty(Math.max(1, qty - 1))}
-                className="p-2 text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition"
+                className="p-2.5 text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition active:scale-95"
                 aria-label="Decrease quantity"
               >
                 <Minus className="w-4 h-4" />
               </button>
-              <span className="px-4 text-sm font-black text-slate-950 min-w-[2.5rem] text-center">
-                {qty}
-              </span>
+              <input
+                type="number"
+                min={1}
+                max={10000}
+                value={qty}
+                onChange={(e) => {
+                  const val = parseInt(e.target.value);
+                  setQty(isNaN(val) || val < 1 ? 1 : val);
+                }}
+                className="w-16 py-1.5 text-center text-sm font-black text-slate-950 focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                aria-label="Order quantity"
+              />
               <button
+                type="button"
                 onClick={() => setQty(qty + 1)}
-                className="p-2 text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition"
+                className="p-2.5 text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition active:scale-95"
                 aria-label="Increase quantity"
               >
                 <Plus className="w-4 h-4" />

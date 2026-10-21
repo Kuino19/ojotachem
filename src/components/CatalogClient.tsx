@@ -10,6 +10,7 @@ import { CheckoutModal } from './CheckoutModal';
 import { OrderSuccessModal } from './OrderSuccessModal';
 import { TrackOrderModal } from './TrackOrderModal';
 import { RfqModal } from './RfqModal';
+import { ImagePreviewModal } from './ImagePreviewModal';
 
 export const CatalogClient: React.FC = () => {
   return (
@@ -28,6 +29,7 @@ export const CatalogClient: React.FC = () => {
       <OrderSuccessModal />
       <TrackOrderModal />
       <RfqModal />
-          </div>
+      <ImagePreviewModal />
+    </div>
   );
 };

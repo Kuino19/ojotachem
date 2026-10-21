@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { ShoppingCart, FlaskConical, Menu, X, User } from 'lucide-react';
-import { SignInButton, SignUpButton, Show, UserButton, OrganizationSwitcher } from '@clerk/nextjs';
+import { SignInButton, SignUpButton, Show, UserButton } from '@clerk/nextjs';
 import { useCart } from '../context/CartContext';
 
 export const Navbar: React.FC = () => {
@@ -49,19 +49,11 @@ export const Navbar: React.FC = () => {
             </Show>
             
             <Show when="signed-in">
-              <div className="flex items-center gap-4">
-                <OrganizationSwitcher 
-                  hidePersonal={false}
-                  appearance={{
-                    elements: {
-                      organizationSwitcherTrigger: "bg-white border border-slate-200 py-1.5 px-3 rounded-full text-sm font-semibold text-slate-700 hover:bg-slate-50 transition shadow-xs"
-                    }
-                  }}
-                />
+              <div className="flex items-center gap-3">
                 <UserButton 
                   appearance={{
                     elements: {
-                      avatarBox: "w-8 h-8 rounded-full border border-slate-200 shadow-sm"
+                      avatarBox: "w-9 h-9 rounded-full border border-slate-200 shadow-sm"
                     }
                   }}
                 />
@@ -119,12 +111,9 @@ export const Navbar: React.FC = () => {
               </div>
             </Show>
             <Show when="signed-in">
-              <div className="flex flex-col gap-4">
-                <OrganizationSwitcher hidePersonal={false} />
-                <div className="flex items-center gap-3">
-                  <UserButton />
-                  <span className="text-sm font-semibold text-slate-600">My Account</span>
-                </div>
+              <div className="flex items-center gap-3 py-2">
+                <UserButton />
+                <span className="text-sm font-semibold text-slate-700">Account Profile</span>
               </div>
             </Show>
           </div>
