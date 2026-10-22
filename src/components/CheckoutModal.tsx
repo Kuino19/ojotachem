@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import { useCart } from '../context/CartContext';
 import { PaymentMethod, Order, DeliveryType } from '../types';
 import confetti from 'canvas-confetti';
@@ -489,9 +490,14 @@ export const CheckoutModal: React.FC = () => {
 
                       {/* Name & Packaging */}
                       <div className="flex-1 min-w-0 pr-1">
-                        <h4 className="text-xs font-bold text-slate-900 truncate" title={chemical.name}>
+                        <Link 
+                          href={`/catalog/${chemical.id}`} 
+                          onClick={() => setIsCheckoutOpen(false)}
+                          className="text-xs font-bold text-slate-900 hover:text-amber-600 transition truncate block" 
+                          title={chemical.name}
+                        >
                           {chemical.name}
-                        </h4>
+                        </Link>
                         <span className="text-[10px] text-slate-500 block truncate">
                           {chemical.packaging}
                         </span>

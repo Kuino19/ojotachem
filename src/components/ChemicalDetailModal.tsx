@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import { useCart } from '../context/CartContext';
 import { 
   X, 
@@ -9,10 +10,11 @@ import {
   MapPin, 
   Plus, 
   Minus, 
-  ShoppingCart,
-  CreditCard,
-  MessageCircle,
-  Maximize2
+  ShoppingCart, 
+  CreditCard, 
+  MessageCircle, 
+  Maximize2,
+  ExternalLink
 } from 'lucide-react';
 
 export const ChemicalDetailModal: React.FC = () => {
@@ -63,13 +65,23 @@ export const ChemicalDetailModal: React.FC = () => {
             </p>
           </div>
 
-          <button
-            onClick={() => setSelectedChemical(null)}
-            className="text-slate-400 hover:text-slate-700 bg-white hover:bg-slate-100 p-2 rounded-full border border-slate-200 transition"
-            aria-label="Close chemical specification modal"
-          >
-            <X className="w-5 h-5" />
-          </button>
+          <div className="flex items-center gap-2">
+            <Link
+              href={`/catalog/${selectedChemical.id}`}
+              onClick={() => setSelectedChemical(null)}
+              className="text-xs font-bold text-slate-700 hover:text-emerald-700 bg-white hover:bg-slate-100 px-3 py-1.5 rounded-full border border-slate-200 transition flex items-center gap-1.5 shadow-2xs"
+            >
+              <span>Full Page</span>
+              <ExternalLink className="w-3.5 h-3.5" />
+            </Link>
+            <button
+              onClick={() => setSelectedChemical(null)}
+              className="text-slate-400 hover:text-slate-700 bg-white hover:bg-slate-100 p-2 rounded-full border border-slate-200 transition"
+              aria-label="Close chemical specification modal"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          </div>
         </div>
 
         {/* Modal Body */}

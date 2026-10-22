@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import { useCart } from '../context/CartContext';
 import { DeliveryType } from '../types';
 import { 
@@ -162,7 +163,13 @@ export const CartDrawer: React.FC = () => {
                       <div className="flex justify-between items-start gap-1">
                         <div className="min-w-0">
                           <h4 className="text-xs sm:text-sm font-bold text-slate-900 truncate" title={chemical.name}>
-                            {chemical.name}
+                            <Link 
+                              href={`/catalog/${chemical.id}`}
+                              onClick={() => setIsCartOpen(false)}
+                              className="hover:text-emerald-700 hover:underline"
+                            >
+                              {chemical.name}
+                            </Link>
                           </h4>
                           <div className="flex items-center gap-1.5 mt-0.5">
                             <span className="text-[10px] text-slate-500 font-medium truncate">

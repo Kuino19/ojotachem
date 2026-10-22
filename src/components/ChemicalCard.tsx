@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import { Chemical } from '../types';
 import { useCart } from '../context/CartContext';
 import { Plus, Check, MapPin, MessageCircle, Maximize2 } from 'lucide-react';
@@ -80,8 +81,10 @@ export const ChemicalCard: React.FC<ChemicalCardProps> = ({ chemical }) => {
           </span>
         </div>
 
-        <h3 className="text-2xl font-black text-slate-900 leading-tight mb-2 group-hover:text-slate-700 transition">
-          {chemical.name}
+        <h3 className="text-2xl font-black text-slate-900 leading-tight mb-2 group-hover:text-emerald-700 transition">
+          <Link href={`/catalog/${chemical.id}`}>
+            {chemical.name}
+          </Link>
         </h3>
         
         <p className="text-sm font-semibold text-slate-400 mb-6">
@@ -113,12 +116,12 @@ export const ChemicalCard: React.FC<ChemicalCardProps> = ({ chemical }) => {
         </div>
 
         <div className="flex items-center gap-3 mb-3">
-          <button
-            onClick={() => setSelectedChemical(chemical)}
+          <Link
+            href={`/catalog/${chemical.id}`}
             className="flex-1 bg-slate-50 hover:bg-slate-100 text-slate-900 text-sm font-semibold py-3.5 rounded-full transition flex items-center justify-center gap-2"
           >
             Details
-          </button>
+          </Link>
 
           <button
             onClick={() => addToCart(chemical, 1)}

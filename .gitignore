@@ -39,3 +39,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# scratch & one-off scripts
+*.js
+!next.config.js
+!postcss.config.js
+page.html
+scratch_scraper/

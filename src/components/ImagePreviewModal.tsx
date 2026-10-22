@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import { useCart } from '../context/CartContext';
 import { X, ShoppingCart, MessageCircle, Info } from 'lucide-react';
 
@@ -102,13 +103,14 @@ export const ImagePreviewModal: React.FC = () => {
 
           <div className="flex flex-wrap items-center gap-2.5">
             {previewImage.chemical && (
-              <button
-                onClick={handleOpenDetails}
+              <Link
+                href={`/catalog/${previewImage.chemical.id}`}
+                onClick={() => setPreviewImage(null)}
                 className="bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold py-2.5 px-4 rounded-xl transition flex items-center gap-1.5"
               >
-                <Info className="w-4 h-4 text-slate-400" />
-                <span>Full Specifications</span>
-              </button>
+                <Info className="w-4 h-4 text-emerald-400" />
+                <span>Full Product Page</span>
+              </Link>
             )}
 
             {previewImage.chemical && (
